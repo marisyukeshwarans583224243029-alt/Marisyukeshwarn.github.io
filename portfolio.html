@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maris Yukeshwaran | Elite Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold-shine: linear-gradient(135deg, #d4af37 0%, #ff4d4d 50%, #bfa23a 100%);
+      --deep-red: #8b0000;
+      --accent-red: #ff0000;
+      --obsidian: #050505;
+      --glass: rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--obsidian);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+      z-index: -1;
+      animation: pulseBg 10s infinite alternate;
+    }
+
+    @keyframes pulseBg {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 25px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5, 5, 5, 0.9);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-family: 'Marcellus', serif;
+      font-size: 28px;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 35px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: 0.4s;
+      position: relative;
+    }
+
+    .nav-links a:hover { color: #ff4d4d; }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0;
+      width: 0; height: 1px; background: var(--gold-shine);
+      transition: 0.4s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    section { padding: 100px 10%; }
+    
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Marcellus', serif;
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: 1;
+      margin-bottom: 25px;
+      background: var(--gold-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleEntrance 1.5s ease-out;
+    }
+
+    @keyframes titleEntrance {
+      from { opacity: 0; transform: translateX(-50px); filter: blur(10px); }
+      to { opacity: 1; transform: translateX(0); filter: blur(0); }
+    }
+
+    .profile-wrap {
+      position: relative;
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .profile-pic {
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      position: relative;
+      z-index: 5;
+      overflow: hidden;
+      border: 4px solid #111;
+      box-shadow: 0 0 50px rgba(139, 0, 0, 0.5);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .profile-pic img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: 0.6s;
+    }
+
+    .profile-pic:hover img { transform: scale(1.1) rotate(3deg); }
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      animation: rotate 10s linear infinite;
+    }
+
+    .ring-1 {
+      inset: 10px;
+      border-top: 2px solid #d4af37;
+      border-bottom: 2px solid #ff0000;
+      animation-duration: 4s;
+    }
+
+    .ring-2 {
+      inset: -15px;
+      border-left: 1px solid #ff4d4d;
+      border-right: 1px solid #d4af37;
+      animation-direction: reverse;
+      animation-duration: 8s;
+    }
+
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+    .content-focus {
+      max-width: 900px; margin: 0 auto;
+      text-align: center;
+    }
+
+    .objective-box {
+      border-left: 4px solid var(--accent-red);
+      background: rgba(255, 0, 0, 0.05);
+      padding: 40px;
+      margin-top: 50px;
+      backdrop-filter: blur(5px);
+      transition: 0.5s;
+    }
+
+    .objective-box:hover {
+      background: rgba(255, 0, 0, 0.1);
+      box-shadow: -10px 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 25px; margin-top: 40px;
+    }
+
+    .skill {
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 25px 10px;
+      border-radius: 15px;
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    .skill h4 { 
+        font-size: 0.85rem; 
+        letter-spacing: 2px; 
+        color: #aaa; 
+        transition: 0.4s;
+    }
+
+    .skill:hover {
+      border-color: #ff4d4d;
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+    }
+
+    .skill::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 20%; height: 200%;
+      background: rgba(255, 0, 0, 0.6);
+      transform: rotate(30deg);
+      transition: 0s;
+    }
+
+    .skill:hover::after {
+      left: 140%;
+      transition: 0.7s;
+    }
+
+    .skill:hover h4 { color: #fff; text-shadow: 0 0 10px #ff0000; }
+
+    /* ===== PROJECT SECTION STYLES ===== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .project-card {
+      background: #0a0a0a;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.5s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px);
+      border-color: var(--accent-red);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid var(--accent-red);
+      filter: grayscale(100%);
+      transition: 0.5s;
+    }
+
+    .project-card:hover .project-img {
+      filter: grayscale(0%);
+    }
+
+    .project-info {
+      padding: 25px;
+    }
+
+    .project-info h4 {
+      color: var(--gold-shine);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .project-info p {
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 18px 50px;
+      border: 1px solid #ff4d4d;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.5s;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+      color: #fff;
+    }
+
+    .btn::before {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--gold-shine);
+      transition: 0.5s; z-index: -1;
+    }
+
+    .btn:hover::before { left: 0; }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.17, 0.85, 0.43, 1.01); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    footer {
+        text-align: center;
+        padding: 60px;
+        color: #444;
+        font-size: 12px;
+        border-top: 1px solid rgba(255,0,0,0.1);
+    }
+
+    @media (max-width: 968px) {
+      .hero { flex-direction: column-reverse; text-align: center; }
+      .profile-wrap { width: 300px; height: 300px; }
+      .profile-pic { width: 250px; height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">MARIS</a>
+    <div class="nav-links">
+      <a href="#about">Philosophy</a>
+      <a href="#skills">Mastery</a>
+      <a href="#projects">Legacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <span style="color: #ff4d4d;">Full-Stack Software Engineer</span>
+      <h1>MARIS <br>YUKESHWARAN</h1>
+      <p style="color: #999; font-size: 18px; margin-top: 10px;">
+        Architecting robust end-to-end ecosystems and high-fidelity interfaces. 
+        Specializing in scalable backends and seamless user experiences.
+      </p>
+      <a href="#projects" class="btn">View Legacy</a>
+    </div>
+
+    <div class="profile-wrap">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="profile-pic">
+        <img src="IMG.PNG" alt="Maris Yukeshwaran">
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="content-focus">
+      <h3 class="logo" style="font-size: 40px; margin-bottom: 20px;">The Philosophy</h3>
+      <p class="about-text">
+        I am a <span class="highlight" style="color:#ff4d4d; font-weight:bold;">Strategic Developer</span>. 
+        My approach integrates the reliability of <span style="color:#d4af37;">robust backend systems</span> with the elegance of fluid, responsive web design to create impactful digital products.
+      </p>
+      
+      <div class="objective-box">
+        <h4 style="color: #d4af37; margin-bottom: 15px; letter-spacing: 5px;">MISSION STATEMENT</h4>
+        <p style="font-style: italic; color: #ddd; font-size: 1.1rem;">
+          "To secure an opportunity where I can apply my skills in Full-Stack development, solve real-world complexities, 
+          and contribute to software solutions that redefine industry standards."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills reveal">
+    <h3 class="logo" style="font-size: 35px; text-align: center; margin-bottom: 50px;">Technical Mastery</h3>
+    <div class="skill-grid">
+      <div class="skill"><h4>HTML5/CSS3</h4></div>
+      <div class="skill"><h4>JAVASCRIPT</h4></div>
+      <div class="skill"><h4>NODE.JS</h4></div>
+      <div class="skill"><h4>SQL</h4></div>
+      <div class="skill"><h4>PYTHON</h4></div>
+      <div class="skill"><h4>C/C++</h4></div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h3 class="logo" style="font-size: 35px; text-align: center; margin-bottom: 50px;">Selected Legacy</h3>
+    <div class="project-grid">
+      
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="E-commerce">
+        <div class="project-info">
+          <h4>Elite E-Commerce Platform</h4>
+          <p>A high-performance MERN stack application featuring secure Stripe payments, real-time inventory tracking, and an administrative command center.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Social Network">
+        <div class="project-info">
+          <h4>Secure Collaborative Hub</h4>
+          <p>A full-stack social ecosystem built with Next.js and WebSockets, supporting real-time messaging, end-to-end encryption, and dynamic content feeds.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="SaaS Dashboard">
+        <div class="project-info">
+          <h4>Enterprise SaaS Dashboard</h4>
+          <p>An intricate data-driven management system with multi-tenant authentication, automated reporting, and interactive performance visualizations.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="FinTech App">
+        <div class="project-info">
+          <h4>Asset Management Gateway</h4>
+          <p>A sophisticated financial application focusing on transaction security, budget forecasting, and seamless integration with third-party banking APIs.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Developer Tools">
+        <div class="project-info">
+          <h4>Project Management Suite</h4>
+          <p>A tailored tool for engineering teams including Kanban workflows, automatic documentation generation, and GitHub repository synchronization.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="API Service">
+        <div class="project-info">
+          <h4>Scalable Microservices API</h4>
+          <p>A Dockerized backend architecture designed for 99.9% uptime, featuring load balancing, automated testing, and comprehensive Swagger documentation.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h3 class="logo" style="text-align: center; margin-bottom: 40px;">Establish Contact</h3>
+    <div style="display:flex; justify-content:center; gap: 20px; flex-wrap: wrap;">
+      <a href="mailto:maris.yukeshwaran.2006@gmail.com" class="btn" style="padding: 15px 30px; font-size: 12px;">Email Agent</a>
+      <a href="https://www.linkedin.com/in/maris-yukeshwaran-203b1034a/" target="_blank" class="btn" style="padding: 15px 30px; font-size: 12px;">LinkedIn</a>
+      <a href="https://github.com/Marisyukeshwarn" target="_blank" class="btn" style="padding: 15px 30px; font-size: 12px;">GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 MARIS YUKESHWARAN | DESIGNED FOR IMPACT</p>
+  </footer>
+
+  <script>
+    function reveal() {
+      const reveals = document.querySelectorAll(".reveal");
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add("active");
+        }
+      });
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const pic = document.querySelector(".profile-pic");
+      if(pic) {
+        const x = (window.innerWidth / 2 - e.pageX) / 30;
+        const y = (window.innerHeight / 2 - e.pageY) / 30;
+        pic.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+      }
+    });
+
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
+  </script>
+
+</body>
+</html>
